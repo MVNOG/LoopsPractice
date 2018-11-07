@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Element{
+			constructor(data){
+				this._data = data;
+				this._nextEl = null;
+			}
+
+			set data(data){
+				this._data = data;
+			}
+			set nextEl(nextEl){
+				this._nextEl = nextEl;
+			}
+
+			get data(){
+				return this._data;
+			}
+			get nextEl(){
+				return this._nextEl;
+			}
+		}
+
+		class List{
+			constructor(){
+				this.firstObj = null;
+			}
+
+			add(data){
+				let newEl = new Element (data);
+				if (this.firstObj == null){
+					this.firstObj = newEl;
+				}
+				else{
+					let lastEl = this.findLastEl(this.firstObj);
+					lastEl.nextEl = newEl;
+				}
+			}
+
+			findLastEl(curEl){
+				while(curEl.nextEl != null){
+					curEl = curEl.nextEl;
+				}
+				return curEl;
+			}
+
+			getElement(n){
+				let count = 0;
+				let findEl = this.firstObj
+				while(count < n){
+					findEl = findEl.nextEl;
+					count++;
+				}
+				return findEl;
+			}
+
+
+			deleteAfter(n){
+				let prevEl = n;
+				prevEl.nextEl = prevEl.nextEl.nextEl;
+			}
+		}
+
+		let list = new List();
+		for (let i = 0; i < 20; i++){
+			list.add(i);
+		}
+
+		list.deleteAfter(list.getElement(4));
+
+
+	</script>
+</body>
+</html>

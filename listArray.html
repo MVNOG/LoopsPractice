@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        class List {
+            constructor() {
+                this.data = [];
+            }
+
+            add(data) {
+                this.data.push(data);
+            }
+
+            getElement(n) {
+                return this.data[n];
+            }
+
+            delete(n) {
+                this.data.splice(n, 1);
+            }
+        }
+
+        let list = new List();
+        for (let i = 0; i < 30; i++) list.add(i);
+        let pr = list.getElement(32);
+        console.log(pr);
+        list.delete(10);
+
+    </script>
+</body>
+
+</html>
